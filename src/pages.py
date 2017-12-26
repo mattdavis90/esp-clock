@@ -42,10 +42,23 @@ class NTP(Page):
         self._sta_if = network.WLAN(network.STA_IF)
 
     def ready(self, current_ticks, now):
+        """Is this page ready to run?
+
+        :param current_ticks: The current system ticks
+        :param now: The current time
+
+        :return: Ready to run?
+        """
         self._current_ticks = current_ticks
         return True
 
     def show(self, now):
+        """Display this page
+
+        :param now: The current time
+
+        :return: Finished showing for this schedule
+        """
         if not self._sta_if.isconnected():
             self._display.text('WS', 0)
 
@@ -72,9 +85,22 @@ class StarWars(Page):
         pass
 
     def ready(self, current_ticks, now):
+        """Is this page ready to run?
+
+        :param current_ticks: The current system ticks
+        :param now: The current time
+
+        :return: Ready to run?
+        """
         return button.down
 
     def show(self, now):
+        """Display this page
+
+        :param now: The current time
+
+        :return: Finished showing for this schedule
+        """
         led.on(led.RED)
         starwars.play()
         led.off()
@@ -91,12 +117,25 @@ class PacMan(Page):
         self._frame = 0
 
     def ready(self, current_ticks, now):
+        """Is this page ready to run?
+
+        :param current_ticks: The current system ticks
+        :param now: The current time
+
+        :return: Ready to run?
+        """
         if self._running or (now[5] in (0, 30) and now[5] != self._last_run): # Run at 0 and 30 secs. But only display at 0
             self._last_run = now[5]
             return True
         return False
 
     def show(self, now):
+        """Display this page
+
+        :param now: The current time
+
+        :return: Finished showing for this schedule
+        """
         if now[5] != 0: # Only run on the 30s mark
             return False
 
@@ -124,12 +163,25 @@ class Seconds(Page):
         self._previous_ticks = 0
 
     def ready(self, current_ticks, now):
+        """Is this page ready to run?
+
+        :param current_ticks: The current system ticks
+        :param now: The current time
+
+        :return: Ready to run?
+        """
         if utime.ticks_diff(current_ticks, self._previous_ticks) > 100:
             self._previous_ticks = current_ticks
             return True
         return False
 
     def show(self, now):
+        """Display this page
+
+        :param now: The current time
+
+        :return: Finished showing for this schedule
+        """
         idx = 0
         column = 1
 
@@ -149,12 +201,25 @@ class Time(Page):
         self._previous_ticks = 0
 
     def ready(self, current_ticks, now):
+        """Is this page ready to run?
+
+        :param current_ticks: The current system ticks
+        :param now: The current time
+
+        :return: Ready to run?
+        """
         if utime.ticks_diff(current_ticks, self._previous_ticks) > 200:
             self._previous_ticks = current_ticks
             return True
         return False
 
     def show(self, now):
+        """Display this page
+
+        :param now: The current time
+
+        :return: Finished showing for this schedule
+        """
         self._display.text('{:02d}:{:02d}:{:02d}'.format(now[3], now[4], now[5]), 2)
 
         return True
