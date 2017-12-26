@@ -15,6 +15,7 @@ class Button():
     @property
     def down(self):
         """Is the pin down
+
         :return: Pin is down
         """
         return self._pin.value() == 0 if self._invert else self._pin == 1
@@ -22,6 +23,7 @@ class Button():
     @property
     def up(self):
         """Is the pin up
+
         :return: Pin is up
         """
         return self._pin.value() == 1 if self._invert else self._pin == 0
