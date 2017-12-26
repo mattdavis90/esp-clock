@@ -1,0 +1,7 @@
+max7219 module
+==============
+
+.. automodule:: max7219
+    :members:
+    :undoc-members:
+    :show-inheritance:

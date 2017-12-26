@@ -1,10 +1,5 @@
-esp-clock
-=========
-Python Programmable WiFi Enabled Clock
-
-
-To flash new MicroPython
-------------------------
+How To Flash Latest MicroPython
+-------------------------------
 
 Install esptool from `Github <https://github.com/espressif/esptool>`_
 
