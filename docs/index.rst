@@ -10,7 +10,8 @@ Welcome to esp-clock's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   firmware
+   Adding new pages <editing>
+   Uploading new Firmware <firmware>
    API Doc <modules>
 
 
