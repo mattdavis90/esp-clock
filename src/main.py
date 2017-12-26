@@ -1,2 +1,2 @@
-from clock import run_scheduler
-run_scheduler()
+from scheduler import run
+run()

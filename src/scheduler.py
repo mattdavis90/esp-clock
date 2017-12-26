@@ -1,13 +1,14 @@
 import utime
 
-from display import Display
-from pages import NTP, PacMan, Seconds, Time
+from display import display
+from pages import NTP, StarWars, PacMan, Seconds, Time
 
 
-def run_scheduler():
-    display = Display()
-
+def run():
+    """Run the page scheduler
+    """
     pages = [NTP(display),
+             StarWars(),
              PacMan(display),
              Seconds(display),
              Time(display)]

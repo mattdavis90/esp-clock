@@ -1,10 +1,39 @@
 import ntptime
 import network
 import utime
+
 from display import inc_column
+from led import led
+from starwars import starwars
+from button import button
 
 
-class NTP():
+class Page():
+    """Define a page
+    """
+    def ready(self, current_ticks, now):
+        """Is this page ready to run?
+
+        :param current_ticks: The current system ticks
+        :param now: The current time
+
+        :return: Ready to run?
+        """
+        pass
+
+    def show(self, now):
+        """Display this page
+
+        :param now: The current time
+
+        :return: Finished showing for this schedule
+        """
+        pass
+
+
+class NTP(Page):
+    """Page to check the clock is connected to WiFi and get time from NTP
+    """
     def __init__(self, display):
         self._display = display
         self._current_ticks = 0
@@ -36,7 +65,25 @@ class NTP():
         return False
 
 
-class PacMan():
+class StarWars(Page):
+    """Page to play StarWars on button press
+    """
+    def __init__(self):
+        pass
+
+    def ready(self, current_ticks, now):
+        return button.down
+
+    def show(self, now):
+        led.on(led.RED)
+        starwars.play()
+        led.off()
+        return False
+
+
+class PacMan(Page):
+    """Page to show PacMan moving across the screen
+    """
     def __init__(self, display):
         self._display = display
         self._last_run = None
@@ -69,7 +116,9 @@ class PacMan():
         return True
 
 
-class Seconds():
+class Seconds(Page):
+    """Page to show a seconds ticker across the top of the screen
+    """
     def __init__(self, display):
         self._display = display
         self._previous_ticks = 0
@@ -92,7 +141,9 @@ class Seconds():
         return False
 
 
-class Time():
+class Time(Page):
+    """Page to show the current time
+    """
     def __init__(self, display):
         self._display = display
         self._previous_ticks = 0

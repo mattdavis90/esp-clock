@@ -1,6 +1,8 @@
 from micropython import const
 from utime import sleep_ms
 
+from buzzer import buzzer
+
 
 C4  = const(261)
 D4  = const(294)
@@ -24,14 +26,19 @@ A5  = const(880)
 
 
 class StarWars():
+    """Plays StarWars!!!"""
     def __init__(self, buzzer):
         self._buzzer = buzzer
 
     def _buzz(self, f, t):
+        """Wraps buzzer's buzz with a slight pause
+        """
         self._buzzer.buzz(f, t)
         sleep_ms(50)
 
     def play(self):
+        """Play the song
+        """
         #Play first section
         self._firstSection()
 
@@ -112,3 +119,6 @@ class StarWars():
         self._buzz(C5,  250)
 
         sleep_ms(350)
+
+
+starwars = StarWars(buzzer)
